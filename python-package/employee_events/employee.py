@@ -1,44 +1,47 @@
 # Import the QueryBase class
-# YOUR CODE HERE
-
-# Import dependencies for sql execution
 #### YOUR CODE HERE
 
-# Create a subclass of QueryBase
-# called  `Team`
+# Import dependencies needed for sql execution
+# from the `sql_execution` module
+#### YOUR CODE HERE
+
+# Define a subclass of QueryBase
+# called Employee
 #### YOUR CODE HERE
 
     # Set the class attribute `name`
-    # to the string "team"
+    # to the string "employee"
     #### YOUR CODE HERE
 
 
-    # Define a `names` method
+    # Define a method called `names`
     # that receives no arguments
-    # This method should return
-    # a list of tuples from an sql execution
+    # This method should return a list of tuples
+    # from an sql execution
     #### YOUR CODE HERE
         
-        # Query 5
-        # Write an SQL query that selects
-        # the team_name and team_id columns
-        # from the team table for all teams
-        # in the database
+        # Query 3
+        # Write an SQL query
+        # that selects two columns 
+        # 1. The employee's full name
+        # 2. The employee's id
+        # This query should return the data
+        # for all employees in the database
         #### YOUR CODE HERE
     
 
-    # Define a `username` method
-    # that receives an ID argument
-    # This method should return
-    # a list of tuples from an sql execution
+    # Define a method called `username`
+    # that receives an `id` argument
+    # This method should return a list of tuples
+    # from an sql execution
     #### YOUR CODE HERE
-
-        # Query 6
+        
+        # Query 4
         # Write an SQL query
-        # that selects the team_name column
+        # that selects an employees full name
         # Use f-string formatting and a WHERE filter
-        # to only return the team name related to
-        # the ID argument
+        # to only return the full name of the employee
+        # with an id equal to the id argument
         #### YOUR CODE HERE
 
 
@@ -53,14 +56,10 @@
     def model_data(self, id):
 
         return f"""
-            SELECT positive_events, negative_events FROM (
-                    SELECT employee_id
-                         , SUM(positive_events) positive_events
+                    SELECT SUM(positive_events) positive_events
                          , SUM(negative_events) negative_events
                     FROM {self.name}
                     JOIN employee_events
                         USING({self.name}_id)
                     WHERE {self.name}.{self.name}_id = {id}
-                    GROUP BY employee_id
-                   )
                 """
